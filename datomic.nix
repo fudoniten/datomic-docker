@@ -27,6 +27,7 @@ in pkgs.dockerTools.buildImage {
       cacert
       glibc
       glibcLocalesUtf8
+      jdk25
       nss
     ];
     pathsToLink = [ "/bin" ];
