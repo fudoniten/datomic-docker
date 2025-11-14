@@ -34,7 +34,7 @@ in pkgs.dockerTools.buildImage {
 
   runAsRoot = ''
     mkdir -p /opt
-    cp -a ${datomicDrv}/datomic-pro /opt/datomic/pro
+    cp -a ${datomicDrv}/datomic-pro /opt/datomic-pro
     chmod u+w -R /opt/datomic-pro
     chown -R 9999:9999 /opt/datomic-pro
   '';
