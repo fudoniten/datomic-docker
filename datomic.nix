@@ -40,7 +40,7 @@ in pkgs.dockerTools.buildImage {
   '';
 
   config = {
-    Entrypoint = [ "/opt/datomic/bin/transactor" ];
+    Entrypoint = [ "/opt/datomic-pro/bin/transactor" ];
     Cmd = [ "/etc/datomic/transactor.properties" ];
     User = "9999:9999";
     Env = mapAttrsToList (k: v: "${k}=${v}") (rec {
