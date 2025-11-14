@@ -34,7 +34,7 @@ in pkgs.dockerTools.buildImage {
 
   runAsRoot = ''
     mkdir -p /opt
-    cp -a ${datomicDrv} /opt/datomic-pro
+    cp -a ${datomicDrv}/datomic-pro-${datomicVersion} /opt/datomic/pro
     chmod u+w -R /opt/datomic-pro
     chown -R 9999:9999 /opt/datomic-pro
   '';
@@ -44,7 +44,8 @@ in pkgs.dockerTools.buildImage {
     Cmd = [ "/etc/datomic/transactor.properties" ];
     User = "9999:9999";
     Env = mapAttrsToList (k: v: "${k}=${v}") (rec {
-      PATH = concatStringsSep ":" [ "/opt/datomic-pro/jdk-17/bin" "$PATH" ];
+      PATH =
+        concatStringsSep ":" [ "/opt/datomic-pro/jdk-17/bin" "$PATH" "/bin" ];
       SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
       NIX_SSL_CERT_FILE = SSL_CERT_FILE;
       LOCALE_ARCHIVE = "${pkgs.glibcLocalesUtf8}/lib/locale/locale-archive";
